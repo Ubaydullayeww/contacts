@@ -3,12 +3,16 @@ class Contacts {
   int number;
   String name;
   String image;
+  String? category;
+  bool isImportant;
 
   Contacts({
     required this.id,
     required this.number,
     required this.name,
     required this.image,
+    this.category,
+    this.isImportant = false,
   });
 
   factory Contacts.fromJson(Map<String, dynamic> json) {
@@ -17,6 +21,8 @@ class Contacts {
       number: json['number'],
       name: json['name'],
       image: json['image'],
+      category: json['category'],
+      isImportant: json['isImportant'] ?? false,
     );
   }
 
@@ -26,9 +32,10 @@ class Contacts {
       'number': number,
       'name': name,
       'image': image,
+      'category': category,
+      'isImportant': isImportant,
     };
   }
 
-  
-
+  bool get isLocalImage => image.startsWith('/');
 }
